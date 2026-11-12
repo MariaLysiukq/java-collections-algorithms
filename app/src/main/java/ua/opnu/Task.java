@@ -111,6 +111,19 @@ public class Task {
         map14.put(3, "Marty");
         map14.put(29, "Ed");
         System.out.println("Task 14: " + task.reverse(map14));
+        Map<String, Integer> map15 = new HashMap<>();
+        map15.put("Alyssa", 22);
+        map15.put("Char", 25);
+        map15.put("Dan", 25);
+        map15.put("Jeff", 20);
+        map15.put("Kasey", 20);
+        map15.put("Kim", 20);
+        map15.put("Mogran", 25);
+        map15.put("Ryan", 25);
+        map15.put("Stef", 22);
+        System.out.println("Task 15: " + task.rarest(map15));
+        map15.put("Kelly", 22);
+        System.out.println("Task 15 (tie): " + task.rarest(map15));
     }
 
     public void removeShorterStrings(List<String> list) {
@@ -264,8 +277,20 @@ public class Task {
     }
 
     public int rarest(Map<String, Integer> map) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
-        return 0;
+        Map<Integer, Integer> counts = new HashMap<>();
+        for (Integer value : map.values()) {
+            counts.merge(value, 1, Integer::sum);
+        }
+        int rarestValue = 0;
+        int minCount = Integer.MAX_VALUE;
+        for (Map.Entry<Integer, Integer> entry : counts.entrySet()) {
+            int count = entry.getValue();
+            if (count < minCount || (count == minCount && entry.getKey() < rarestValue)) {
+                rarestValue = entry.getKey();
+                minCount = count;
+            }
+        }
+        return rarestValue;
     }
 
     public int maxOccurrences(List<Integer> list) {

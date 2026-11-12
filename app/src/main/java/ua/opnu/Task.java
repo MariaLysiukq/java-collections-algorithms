@@ -1,7 +1,9 @@
 package ua.opnu;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -40,6 +42,12 @@ public class Task {
         List<String> list5Stars = new ArrayList<>(Arrays.asList("****", "abc"));
         task.markLength4(list5Stars);
         System.out.println("Task 5 (already stars): " + list5Stars);
+        Queue<Integer> queue6 = new LinkedList<>(Arrays.asList(3, 8, 17, 9, 17, 8, 3));
+        System.out.println("Task 6: " + task.isPalindrome(queue6) + " " + queue6);
+        Queue<Integer> queue6Not = new LinkedList<>(Arrays.asList(3, 8, 17, 9, 4, 17, 8, 3));
+        System.out.println("Task 6 (not palindrome): " + task.isPalindrome(queue6Not) + " " + queue6Not);
+        Queue<Integer> queue6Empty = new LinkedList<>();
+        System.out.println("Task 6 (empty): " + task.isPalindrome(queue6Empty) + " " + queue6Empty);
     }
 
     public void removeShorterStrings(List<String> list) {
@@ -82,8 +90,22 @@ public class Task {
     }
 
     public boolean isPalindrome(Queue<Integer> queue) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
-        return false;
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
+        int size = queue.size();
+        for (int i = 0; i < size; i++) {
+            Integer value = queue.remove();
+            stack.push(value);
+            queue.add(value);
+        }
+        boolean palindrome = true;
+        for (int i = 0; i < size; i++) {
+            Integer value = queue.remove();
+            if (!value.equals(stack.pop())) {
+                palindrome = false;
+            }
+            queue.add(value);
+        }
+        return palindrome;
     }
 
     public void reorder(Queue<Integer> queue) {

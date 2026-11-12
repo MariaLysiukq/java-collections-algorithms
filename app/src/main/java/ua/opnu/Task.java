@@ -22,6 +22,12 @@ public class Task {
         List<String> list2Empty = new ArrayList<>();
         task.stutter(list2Empty);
         System.out.println("Task 2 (empty): " + list2Empty);
+        List<String> list3 = new ArrayList<>(Arrays.asList("four", "score", "and", "seven", "years", "ago"));
+        task.switchPairs(list3);
+        System.out.println("Task 3: " + list3);
+        List<String> list3Odd = new ArrayList<>(Arrays.asList("to", "be", "or", "not", "to", "be", "hamlet"));
+        task.switchPairs(list3Odd);
+        System.out.println("Task 3 (odd size): " + list3Odd);
     }
 
     public void removeShorterStrings(List<String> list) {
@@ -41,7 +47,9 @@ public class Task {
     }
 
     public void switchPairs(List<String> list) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
+        for (int i = 0; i + 1 < list.size(); i += 2) {
+            list.set(i, list.set(i + 1, list.get(i)));
+        }
     }
 
     public void removeDuplicates(List<String> list) {

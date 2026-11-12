@@ -3,6 +3,7 @@ package ua.opnu;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -60,6 +61,9 @@ public class Task {
         Queue<Integer> queue8Negative = new LinkedList<>(Arrays.asList(-3, -2, 7, 0, -5, 10));
         task.rearrange(queue8Negative);
         System.out.println("Task 8 (negatives): " + queue8Negative);
+        Set<String> set9 = new HashSet<>(Arrays.asList("one", "two", "three"));
+        System.out.println("Task 9: " + task.maxLength(set9));
+        System.out.println("Task 9 (empty): " + task.maxLength(new HashSet<>()));
     }
 
     public void removeShorterStrings(List<String> list) {
@@ -168,8 +172,11 @@ public class Task {
     }
 
     public int maxLength(Set<String> set) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
-        return 0;
+        int max = 0;
+        for (String value : set) {
+            max = Math.max(max, value.length());
+        }
+        return max;
     }
 
     public void removeEvenLength(Set<String> set) {

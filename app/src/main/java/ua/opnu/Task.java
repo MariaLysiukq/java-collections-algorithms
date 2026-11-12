@@ -54,6 +54,12 @@ public class Task {
         Queue<Integer> queue7Negative = new LinkedList<>(Arrays.asList(0, -1, -3, -7));
         task.reorder(queue7Negative);
         System.out.println("Task 7 (zero and negatives): " + queue7Negative);
+        Queue<Integer> queue8 = new LinkedList<>(Arrays.asList(3, 5, 4, 17, 6, 83, 1, 84, 16, 37));
+        task.rearrange(queue8);
+        System.out.println("Task 8: " + queue8);
+        Queue<Integer> queue8Negative = new LinkedList<>(Arrays.asList(-3, -2, 7, 0, -5, 10));
+        task.rearrange(queue8Negative);
+        System.out.println("Task 8 (negatives): " + queue8Negative);
     }
 
     public void removeShorterStrings(List<String> list) {
@@ -135,7 +141,30 @@ public class Task {
     }
 
     public void rearrange(Queue<Integer> queue) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
+        int size = queue.size();
+        for (int i = 0; i < size; i++) {
+            Integer value = queue.remove();
+            if (value % 2 == 0) {
+                queue.add(value);
+            } else {
+                stack.push(value);
+            }
+        }
+        int evenCount = queue.size();
+        int oddCount = stack.size();
+        while (!stack.isEmpty()) {
+            queue.add(stack.pop());
+        }
+        for (int i = 0; i < evenCount; i++) {
+            queue.add(queue.remove());
+        }
+        for (int i = 0; i < oddCount; i++) {
+            stack.push(queue.remove());
+        }
+        while (!stack.isEmpty()) {
+            queue.add(stack.pop());
+        }
     }
 
     public int maxLength(Set<String> set) {

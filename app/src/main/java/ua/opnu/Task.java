@@ -3,6 +3,7 @@ package ua.opnu;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -72,6 +73,16 @@ public class Task {
         List<Integer> list11Second = Arrays.asList(-5, 15, 2, -1, 7, 15, 36);
         System.out.println("Task 11: " + task.numInCommon(list11First, list11Second));
         System.out.println("Task 11 (empty): " + task.numInCommon(list11First, new ArrayList<>()));
+        Map<String, String> map12 = new HashMap<>();
+        map12.put("Marty", "Stepp");
+        map12.put("Stuart", "Reges");
+        map12.put("Jessica", "Miller");
+        map12.put("Amanda", "Camp");
+        map12.put("Hal", "Perkins");
+        System.out.println("Task 12: " + task.isUnique(map12));
+        map12.put("Bruce", "Reges");
+        System.out.println("Task 12 (repeated value): " + task.isUnique(map12));
+        System.out.println("Task 12 (empty): " + task.isUnique(new HashMap<>()));
     }
 
     public void removeShorterStrings(List<String> list) {
@@ -203,8 +214,7 @@ public class Task {
     }
 
     public boolean isUnique(Map<String, String> map) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
-        return false;
+        return new HashSet<>(map.values()).size() == map.size();
     }
 
     public Map<String, Integer> intersect(Map<String, Integer> map1, Map<String, Integer> map2) {

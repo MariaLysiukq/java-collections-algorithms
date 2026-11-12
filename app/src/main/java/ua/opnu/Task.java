@@ -4,6 +4,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +65,9 @@ public class Task {
         Set<String> set9 = new HashSet<>(Arrays.asList("one", "two", "three"));
         System.out.println("Task 9: " + task.maxLength(set9));
         System.out.println("Task 9 (empty): " + task.maxLength(new HashSet<>()));
+        Set<String> set10 = new HashSet<>(Arrays.asList("foo", "buzz", "bar", "fork", "bort", "spoon", "!", "dude"));
+        task.removeEvenLength(set10);
+        System.out.println("Task 10: " + set10);
     }
 
     public void removeShorterStrings(List<String> list) {
@@ -180,7 +184,12 @@ public class Task {
     }
 
     public void removeEvenLength(Set<String> set) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
+        Iterator<String> iterator = set.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next().length() % 2 == 0) {
+                iterator.remove();
+            }
+        }
     }
 
     public int numInCommon(List<Integer> list1, List<Integer> list2) {

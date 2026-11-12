@@ -48,6 +48,12 @@ public class Task {
         System.out.println("Task 6 (not palindrome): " + task.isPalindrome(queue6Not) + " " + queue6Not);
         Queue<Integer> queue6Empty = new LinkedList<>();
         System.out.println("Task 6 (empty): " + task.isPalindrome(queue6Empty) + " " + queue6Empty);
+        Queue<Integer> queue7 = new LinkedList<>(Arrays.asList(1, 2, -2, 4, -5, 8, -8, 12, -15, 23));
+        task.reorder(queue7);
+        System.out.println("Task 7: " + queue7);
+        Queue<Integer> queue7Negative = new LinkedList<>(Arrays.asList(0, -1, -3, -7));
+        task.reorder(queue7Negative);
+        System.out.println("Task 7 (zero and negatives): " + queue7Negative);
     }
 
     public void removeShorterStrings(List<String> list) {
@@ -109,7 +115,23 @@ public class Task {
     }
 
     public void reorder(Queue<Integer> queue) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
+        int size = queue.size();
+        for (int i = 0; i < size; i++) {
+            Integer value = queue.remove();
+            if (value < 0) {
+                stack.push(value);
+            } else {
+                queue.add(value);
+            }
+        }
+        int nonNegativeCount = queue.size();
+        while (!stack.isEmpty()) {
+            queue.add(stack.pop());
+        }
+        for (int i = 0; i < nonNegativeCount; i++) {
+            queue.add(queue.remove());
+        }
     }
 
     public void rearrange(Queue<Integer> queue) {

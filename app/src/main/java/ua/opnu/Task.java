@@ -83,6 +83,25 @@ public class Task {
         map12.put("Bruce", "Reges");
         System.out.println("Task 12 (repeated value): " + task.isUnique(map12));
         System.out.println("Task 12 (empty): " + task.isUnique(new HashMap<>()));
+        Map<String, Integer> map13First = new HashMap<>();
+        map13First.put("Janet", 87);
+        map13First.put("Logan", 62);
+        map13First.put("Whitaker", 46);
+        map13First.put("Alyssa", 100);
+        map13First.put("Stefanie", 80);
+        map13First.put("Jeff", 88);
+        map13First.put("Kim", 52);
+        map13First.put("Sylvia", 95);
+        Map<String, Integer> map13Second = new HashMap<>();
+        map13Second.put("Logan", 62);
+        map13Second.put("Kim", 52);
+        map13Second.put("Whitaker", 52);
+        map13Second.put("Jeff", 88);
+        map13Second.put("Stefanie", 80);
+        map13Second.put("Brian", 60);
+        map13Second.put("Lisa", 83);
+        map13Second.put("Sylvia", 87);
+        System.out.println("Task 13: " + task.intersect(map13First, map13Second));
     }
 
     public void removeShorterStrings(List<String> list) {
@@ -218,8 +237,13 @@ public class Task {
     }
 
     public Map<String, Integer> intersect(Map<String, Integer> map1, Map<String, Integer> map2) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
-        return null;
+        Map<String, Integer> result = new HashMap<>();
+        for (Map.Entry<String, Integer> entry : map1.entrySet()) {
+            if (entry.getValue().equals(map2.get(entry.getKey()))) {
+                result.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return result;
     }
 
     public Map<String, Integer> reverse(Map<Integer, String> map) {

@@ -102,6 +102,15 @@ public class Task {
         map13Second.put("Lisa", 83);
         map13Second.put("Sylvia", 87);
         System.out.println("Task 13: " + task.intersect(map13First, map13Second));
+        Map<Integer, String> map14 = new HashMap<>();
+        map14.put(42, "Marty");
+        map14.put(81, "Sue");
+        map14.put(17, "Ed");
+        map14.put(31, "Dave");
+        map14.put(56, "Ed");
+        map14.put(3, "Marty");
+        map14.put(29, "Ed");
+        System.out.println("Task 14: " + task.reverse(map14));
     }
 
     public void removeShorterStrings(List<String> list) {
@@ -247,8 +256,11 @@ public class Task {
     }
 
     public Map<String, Integer> reverse(Map<Integer, String> map) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
-        return null;
+        Map<String, Integer> result = new HashMap<>();
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            result.merge(entry.getValue(), entry.getKey(), Math::max);
+        }
+        return result;
     }
 
     public int rarest(Map<String, Integer> map) {

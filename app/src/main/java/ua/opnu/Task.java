@@ -68,6 +68,10 @@ public class Task {
         Set<String> set10 = new HashSet<>(Arrays.asList("foo", "buzz", "bar", "fork", "bort", "spoon", "!", "dude"));
         task.removeEvenLength(set10);
         System.out.println("Task 10: " + set10);
+        List<Integer> list11First = Arrays.asList(3, 7, 3, -1, 2, 3, 7, 2, 15, 15);
+        List<Integer> list11Second = Arrays.asList(-5, 15, 2, -1, 7, 15, 36);
+        System.out.println("Task 11: " + task.numInCommon(list11First, list11Second));
+        System.out.println("Task 11 (empty): " + task.numInCommon(list11First, new ArrayList<>()));
     }
 
     public void removeShorterStrings(List<String> list) {
@@ -193,8 +197,9 @@ public class Task {
     }
 
     public int numInCommon(List<Integer> list1, List<Integer> list2) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
-        return 0;
+        Set<Integer> common = new HashSet<>(list1);
+        common.retainAll(new HashSet<>(list2));
+        return common.size();
     }
 
     public boolean isUnique(Map<String, String> map) {

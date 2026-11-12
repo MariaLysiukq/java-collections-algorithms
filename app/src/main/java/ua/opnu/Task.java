@@ -1,5 +1,7 @@
 package ua.opnu;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -7,11 +9,23 @@ import java.util.Set;
 
 public class Task {
     public static void main(String[] args) {
-
+        Task task = new Task();
+        List<String> list1 = new ArrayList<>(Arrays.asList("four", "score", "and", "seven", "years", "ago"));
+        task.removeShorterStrings(list1);
+        System.out.println("Task 1: " + list1);
+        List<String> list1Odd = new ArrayList<>(Arrays.asList("Don't", "remove", "the", "last", "string (me)"));
+        task.removeShorterStrings(list1Odd);
+        System.out.println("Task 1 (odd size): " + list1Odd);
     }
 
     public void removeShorterStrings(List<String> list) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
+        for (int i = 0; i + 1 < list.size(); i++) {
+            if (list.get(i).length() <= list.get(i + 1).length()) {
+                list.remove(i);
+            } else {
+                list.remove(i + 1);
+            }
+        }
     }
 
     public void stutter(List<String> list) {

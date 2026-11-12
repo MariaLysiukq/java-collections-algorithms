@@ -34,6 +34,12 @@ public class Task {
         List<String> list4Same = new ArrayList<>(Arrays.asList("a", "a", "a", "a"));
         task.removeDuplicates(list4Same);
         System.out.println("Task 4 (all same): " + list4Same);
+        List<String> list5 = new ArrayList<>(Arrays.asList("this", "is", "lots", "of", "fun", "for", "every", "Java", "programmer"));
+        task.markLength4(list5);
+        System.out.println("Task 5: " + list5);
+        List<String> list5Stars = new ArrayList<>(Arrays.asList("****", "abc"));
+        task.markLength4(list5Stars);
+        System.out.println("Task 5 (already stars): " + list5Stars);
     }
 
     public void removeShorterStrings(List<String> list) {
@@ -67,7 +73,12 @@ public class Task {
     }
 
     public void markLength4(List<String> list) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).length() == 4) {
+                list.add(i, "****");
+                i++;
+            }
+        }
     }
 
     public boolean isPalindrome(Queue<Integer> queue) {

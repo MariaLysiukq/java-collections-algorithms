@@ -28,6 +28,12 @@ public class Task {
         List<String> list3Odd = new ArrayList<>(Arrays.asList("to", "be", "or", "not", "to", "be", "hamlet"));
         task.switchPairs(list3Odd);
         System.out.println("Task 3 (odd size): " + list3Odd);
+        List<String> list4 = new ArrayList<>(Arrays.asList("be", "be", "is", "not", "or", "question", "that", "the", "to", "to"));
+        task.removeDuplicates(list4);
+        System.out.println("Task 4: " + list4);
+        List<String> list4Same = new ArrayList<>(Arrays.asList("a", "a", "a", "a"));
+        task.removeDuplicates(list4Same);
+        System.out.println("Task 4 (all same): " + list4Same);
     }
 
     public void removeShorterStrings(List<String> list) {
@@ -53,7 +59,11 @@ public class Task {
     }
 
     public void removeDuplicates(List<String> list) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
+        for (int i = list.size() - 1; i > 0; i--) {
+            if (list.get(i).equals(list.get(i - 1))) {
+                list.remove(i);
+            }
+        }
     }
 
     public void markLength4(List<String> list) {

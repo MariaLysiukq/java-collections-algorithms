@@ -124,6 +124,9 @@ public class Task {
         System.out.println("Task 15: " + task.rarest(map15));
         map15.put("Kelly", 22);
         System.out.println("Task 15 (tie): " + task.rarest(map15));
+        List<Integer> list16 = Arrays.asList(9, 7, 9, -1, 2, 9, 7, 2, 15, 15);
+        System.out.println("Task 16: " + task.maxOccurrences(list16));
+        System.out.println("Task 16 (empty): " + task.maxOccurrences(new ArrayList<>()));
     }
 
     public void removeShorterStrings(List<String> list) {
@@ -294,8 +297,12 @@ public class Task {
     }
 
     public int maxOccurrences(List<Integer> list) {
-        // TODO: напишіть вміст методу згідно умовам для того, щоб пройти тести
-        return 0;
+        Map<Integer, Integer> counts = new HashMap<>();
+        int max = 0;
+        for (Integer value : list) {
+            max = Math.max(max, counts.merge(value, 1, Integer::sum));
+        }
+        return max;
     }
 
 }
